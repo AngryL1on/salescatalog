@@ -2,32 +2,33 @@ package ru.rutmiit.salescatalog.dtos;
 
 import ru.rutmiit.salescatalog.entity.UserRole;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class UserDto{
     private Long id;
-    private String username;
+    private UserRoleDto role;
+    private String userName;
     private String password;
     private String firstName;
     private String lastName;
     private boolean isActive;
-    private UserRole role;
-    private String imageUrl;
-    private Date created;
-    private Date modified;
+    private String imageURL;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
-    public UserDto() {
-    }
+    protected UserDto() {};
 
-    public UserDto(Long id, String username, String password, String firstName, String lastName, boolean isActive, UserRole role, String imageUrl, Date created, Date modified) {
+    public UserDto(Long id, UserRoleDto role, String userName, String password, String firstName, String lastName,
+                    boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
-        this.username = username;
+        this.role = role;
+        this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.isActive = isActive;
-        this.role = role;
-        this.imageUrl = imageUrl;
+        this.imageURL = imageURL;
         this.created = created;
         this.modified = modified;
     }
@@ -40,12 +41,20 @@ public class UserDto{
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public UserRoleDto getRole() {
+        return role;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRole(UserRoleDto role) {
+        this.role = role;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -80,49 +89,41 @@ public class UserDto{
         isActive = active;
     }
 
-    public UserRole getRole() {
-        return role;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 
     @Override
     public String toString() {
-        return "UserDto{" +
+        return "UsersDto{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", role=" + role +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", isActive=" + isActive +
-                ", role=" + role +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", imageURL='" + imageURL + '\'' +
                 ", created=" + created +
                 ", modified=" + modified +
                 '}';

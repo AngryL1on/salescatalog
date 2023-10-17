@@ -1,43 +1,45 @@
 package ru.rutmiit.salescatalog.dtos;
 
-import ru.rutmiit.salescatalog.entity.Model;
-import ru.rutmiit.salescatalog.entity.User;
+
+
 import ru.rutmiit.salescatalog.entity.enumeration.EngineType;
 import ru.rutmiit.salescatalog.entity.enumeration.TransmissionType;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-public class OfferDto{
+public class OfferDto {
     private Long id;
+    private ModelDto model;
+    private UserDto users;
     private String description;
-    private EngineType engine;
-    private String imageUrl;
+    private EngineType engineType;
+    private String imageURL;
     private int mileage;
     private BigDecimal price;
-    private TransmissionType transmission;
+    private TransmissionType transmissionType;
     private int year;
-    private Date created;
-    private Date modified;
-    private Model model;
-    private User seller;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
-    public OfferDto() {
-    }
+    protected OfferDto() {};
 
-    public OfferDto(Long id, String description, EngineType engine, String imageUrl, int mileage, BigDecimal price, TransmissionType transmission, int year, Date created, Date modified, Model model, User seller) {
+    public OfferDto(Long id, ModelDto model, UserDto users, String description, EngineType engineType, String imageURL,
+                    int mileage, BigDecimal price, TransmissionType transmissionType, int year, LocalDateTime created,
+                    LocalDateTime modified) {
         this.id = id;
+        this.model = model;
+        this.users = users;
         this.description = description;
-        this.engine = engine;
-        this.imageUrl = imageUrl;
+        this.engineType = engineType;
+        this.imageURL = imageURL;
         this.mileage = mileage;
         this.price = price;
-        this.transmission = transmission;
+        this.transmissionType = transmissionType;
         this.year = year;
         this.created = created;
         this.modified = modified;
-        this.model = model;
-        this.seller = seller;
     }
 
     public Long getId() {
@@ -48,6 +50,22 @@ public class OfferDto{
         this.id = id;
     }
 
+    public ModelDto getModel() {
+        return model;
+    }
+
+    public void setModel(ModelDto model) {
+        this.model = model;
+    }
+
+    public UserDto getUsers() {
+        return users;
+    }
+
+    public void setUsers(UserDto users) {
+        this.users = users;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -56,20 +74,20 @@ public class OfferDto{
         this.description = description;
     }
 
-    public EngineType getEngine() {
-        return engine;
+    public EngineType getEngineType() {
+        return engineType;
     }
 
-    public void setEngine(EngineType engine) {
-        this.engine = engine;
+    public void setEngineType(EngineType engineType) {
+        this.engineType = engineType;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public int getMileage() {
@@ -88,12 +106,12 @@ public class OfferDto{
         this.price = price;
     }
 
-    public TransmissionType getTransmission() {
-        return transmission;
+    public TransmissionType getTransmissionType() {
+        return transmissionType;
     }
 
-    public void setTransmission(TransmissionType transmission) {
-        this.transmission = transmission;
+    public void setTransmissionType(TransmissionType transmissionType) {
+        this.transmissionType = transmissionType;
     }
 
     public int getYear() {
@@ -104,53 +122,37 @@ public class OfferDto{
         this.year = year;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
-    }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
-    }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
     }
 
     @Override
     public String toString() {
         return "OfferDto{" +
                 "id=" + id +
+                ", model=" + model +
+                ", user=" + users +
                 ", description='" + description + '\'' +
-                ", engine=" + engine +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", engineType=" + engineType +
+                ", imageURL='" + imageURL + '\'' +
                 ", mileage=" + mileage +
                 ", price=" + price +
-                ", transmission=" + transmission +
+                ", transmissionType=" + transmissionType +
                 ", year=" + year +
                 ", created=" + created +
                 ", modified=" + modified +
-                ", model=" + model +
-                ", seller=" + seller +
                 '}';
     }
 }

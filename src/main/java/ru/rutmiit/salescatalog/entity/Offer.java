@@ -5,6 +5,7 @@ import ru.rutmiit.salescatalog.entity.enumeration.EngineType;
 import ru.rutmiit.salescatalog.entity.enumeration.TransmissionType;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -13,76 +14,50 @@ import java.util.Date;
  * transmission type, year, creation and modification timestamps, and is associated with a specific model and seller.
  */
 @Entity
-public class Offer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(nullable = false)
-    private String description;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private EngineType engine;
-
-    @Column(nullable = false)
-    private String imageUrl;
-
-    @Column(nullable = false)
-    private int mileage;
-
-    @Column(nullable = false)
-    private BigDecimal price;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TransmissionType transmission;
-
-    @Column(nullable = false)
-    private int year;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date created;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date modified;
-
+public class Offer extends Base {
     @ManyToOne
-    @JoinColumn(name = "model_id", nullable = false)
+    @JoinColumn(name = "model_id")
     private Model model;
 
     @ManyToOne
-    @JoinColumn(name = "seller_id", nullable = false)
-    private User seller;
+    @JoinColumn(name = "user_id")
+    private User users;
 
-    public Offer() {
-        // Default constructor
+    @Column(name="description", length = 500, nullable = false)
+    private String description;
+    @Column(name="engine", length = 11, nullable = false)
+    private EngineType engineType;
+    @Column(name="imageURL", length = 255, nullable = false)
+    private String imageUrl;
+    @Column(name="mileage", length = 11, nullable = false)
+    private int mileage;
+    @Column(name="price", length = 20, nullable = false)
+    private BigDecimal price;
+    @Column(name="transmission", length = 11, nullable = false)
+    private TransmissionType transmissionType;
+    @Column(name="year", length = 11, nullable = false)
+    private int year;
+    @Column(name="created", length = 6, nullable = false)
+    private LocalDateTime created;
+    @Column(name="modified", length = 6, nullable = false)
+    private LocalDateTime modified;
+
+    protected Offer() {};
+
+    public Model getModel() {
+        return model;
     }
 
-    public Offer(String description, EngineType engine, String imageUrl, int mileage, BigDecimal price,
-                 TransmissionType transmission, int year, Model model, User seller) {
-        this.description = description;
-        this.engine = engine;
-        this.imageUrl = imageUrl;
-        this.mileage = mileage;
-        this.price = price;
-        this.transmission = transmission;
-        this.year = year;
+    public void setModel(Model model) {
         this.model = model;
-        this.seller = seller;
-        this.created = new Date();
-        this.modified = new Date();
     }
 
-    public Long getId() {
-        return id;
+    public User getUsers() {
+        return users;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUsers(User users) {
+        this.users = users;
     }
 
     public String getDescription() {
@@ -93,12 +68,12 @@ public class Offer {
         this.description = description;
     }
 
-    public EngineType getEngine() {
-        return engine;
+    public EngineType getEngineEnum() {
+        return engineType;
     }
 
-    public void setEngine(EngineType engine) {
-        this.engine = engine;
+    public void setEngineEnum(EngineType engineEnum) {
+        this.engineType = engineEnum;
     }
 
     public String getImageUrl() {
@@ -125,12 +100,12 @@ public class Offer {
         this.price = price;
     }
 
-    public TransmissionType getTransmission() {
-        return transmission;
+    public TransmissionType getTransmissionEnum() {
+        return transmissionType;
     }
 
-    public void setTransmission(TransmissionType transmission) {
-        this.transmission = transmission;
+    public void setTransmissionEnum(TransmissionType transmissionEnum) {
+        this.transmissionType = transmissionEnum;
     }
 
     public int getYear() {
@@ -141,36 +116,19 @@ public class Offer {
         this.year = year;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
-    }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
-    }
 }
-

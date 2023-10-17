@@ -1,28 +1,28 @@
 package ru.rutmiit.salescatalog.dtos;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class BrandDto {
-    private String id;
+    private Long id;
     private String name;
-    private Date created;
-    private Date modified;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
-    public BrandDto(String id) {
-    }
-
-    public BrandDto(String id, String name, Date created, Date modified) {
+    public BrandDto(Long id, String name, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.created = created;
         this.modified = modified;
     }
 
-    public String getId() {
+    protected BrandDto() {};
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,26 +34,26 @@ public class BrandDto {
         this.name = name;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 
     @Override
     public String toString() {
         return "BrandDto{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", created=" + created +
                 ", modified=" + modified +

@@ -2,45 +2,34 @@ package ru.rutmiit.salescatalog.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Represents a brand entity.
  * Each brand has a unique identifier, name, creation and modification timestamps.
  */
 @Entity
-public class Brand {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+public class Brand extends Base{
 
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
+    private List<Model> models;
+
+    @Column(name="name", length = 255, nullable = false)
     private String name;
+    @Column(name="created", length = 6, nullable = false)
+    private LocalDateTime created;
+    @Column(name="modified", length = 6, nullable = false)
+    private LocalDateTime modified;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date created;
+    protected Brand() {};
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date modified;
-
-    public Brand() {
-        // Default constructor
+    public List<Model> getModels() {
+        return models;
     }
 
-    public Brand(String name) {
-        this.name = name;
-        this.created = new Date();
-        this.modified = new Date();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setModels(List<Model> models) {
+        this.models = models;
     }
 
     public String getName() {
@@ -49,22 +38,21 @@ public class Brand {
 
     public void setName(String name) {
         this.name = name;
-        this.modified = new Date();
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 }

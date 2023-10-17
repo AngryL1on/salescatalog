@@ -2,7 +2,9 @@ package ru.rutmiit.salescatalog.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Represents a user entity.
@@ -10,71 +12,53 @@ import java.util.Date;
  * active status, role, image URL, creation and modification timestamps.
  */
 @Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
-
-    @Column(nullable = false)
-    private boolean isActive;
-
-    @Column(nullable = false)
-    @JoinColumn(name = "role_id", nullable = false)
+public class User extends Base {
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private UserRole role;
 
-    private String imageUrl;
+    @OneToMany(mappedBy = "users", cascade = CascadeType.REMOVE)
+    private List<Offer> offers;
+    @Column(name="userName", length = 255, nullable = false)
+    private String userName;
+    @Column(name="password", length = 255, nullable = false)
+    private String password;
+    @Column(name="firstName", length = 255, nullable = false)
+    private String firstName;
+    @Column(name="lastName", length = 255, nullable = false)
+    private String lastName;
+    private boolean isActive;
+    @Column(name="imageURL", length = 255, nullable = false)
+    private String imageURL;
+    @Column(name="created", length = 6, nullable = false)
+    private LocalDateTime created;
+    @Column(name="modified", length = 6, nullable = false)
+    private LocalDateTime modified;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date created;
+    protected User() {};
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date modified;
-
-    public User() {
-        // Default constructor
+    public UserRole getRole() {
+        return role;
     }
 
-    public User(String username, String password, String firstName, String lastName,
-                boolean isActive, UserRole role, String imageUrl) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.isActive = isActive;
+    public void setRole(UserRole role) {
         this.role = role;
-        this.imageUrl = imageUrl;
-        this.created = new Date();
-        this.modified = new Date();
     }
 
-    public Long getId() {
-        return id;
+    public List<Offer> getOffers() {
+        return offers;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -109,35 +93,27 @@ public class User {
         isActive = active;
     }
 
-    public UserRole getRole() {
-        return role;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 }

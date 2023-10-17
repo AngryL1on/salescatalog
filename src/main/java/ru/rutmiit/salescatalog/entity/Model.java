@@ -1,9 +1,10 @@
 package ru.rutmiit.salescatalog.entity;
 
 import jakarta.persistence.*;
-import ru.rutmiit.salescatalog.entity.enumeration.Category;
+import ru.rutmiit.salescatalog.entity.enumeration.CategoryType;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Represents a model entity.
@@ -11,59 +12,45 @@ import java.util.Date;
  * creation and modification timestamps, and is associated with a specific brand.
  */
 @Entity
-public class Model {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Category category;
-
-    @Column(nullable = false)
-    private String imageUrl;
-
-    @Column(nullable = false)
-    private int startYear;
-
-    private int endYear;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date created;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date modified;
-
+public class Model extends Base {
     @ManyToOne
-    @JoinColumn(name = "brand_id", nullable = false)
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    public Model() {
-        // Default constructor
+    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE)
+    private List<Offer> offers;
+
+    @Column(name="name", length = 255, nullable = false)
+    private String name;
+    @Column(name="category", length = 11, nullable = false)
+    private CategoryType categoryTypeEnum;
+    @Column(name="imageURL", length = 255, nullable = false)
+    private String imageUrl;
+    @Column(name="startYear", length = 11, nullable = false)
+    private int startYear;
+    @Column(name="endYear", length = 11, nullable = false)
+    private int endYear;
+    @Column(name="created", length = 6, nullable = false)
+    private LocalDateTime created;
+    @Column(name="modified", length = 6, nullable = false)
+    private LocalDateTime modified;
+
+    protected Model() {};
+
+    public Brand getBrand() {
+        return brand;
     }
 
-    public Model(String name, Category category, String imageUrl, int startYear, int endYear, Brand brand) {
-        this.name = name;
-        this.category = category;
-        this.imageUrl = imageUrl;
-        this.startYear = startYear;
-        this.endYear = endYear;
+    public void setBrand(Brand brand) {
         this.brand = brand;
-        this.created = new Date();
-        this.modified = new Date();
     }
 
-    public Long getId() {
-        return id;
+    public List<Offer> getOffers() {
+        return offers;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
 
     public String getName() {
@@ -74,12 +61,12 @@ public class Model {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public CategoryType getCategoryEnum() {
+        return categoryTypeEnum;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryEnum(CategoryType categoryTypeEnum) {
+        this.categoryTypeEnum = categoryTypeEnum;
     }
 
     public String getImageUrl() {
@@ -106,27 +93,19 @@ public class Model {
         this.endYear = endYear;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
     }
 }

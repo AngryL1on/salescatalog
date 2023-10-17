@@ -1,34 +1,33 @@
 package ru.rutmiit.salescatalog.dtos;
 
-import ru.rutmiit.salescatalog.entity.Brand;
-import ru.rutmiit.salescatalog.entity.enumeration.Category;
+import ru.rutmiit.salescatalog.entity.enumeration.CategoryType;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class ModelDto {
     private Long id;
+    private BrandDto brand;
     private String name;
-    private Category category;
-    private String imageUrl;
+    private CategoryType categoryType;
+    private String imageURL;
     private int startYear;
     private int endYear;
-    private Date created;
-    private Date modified;
-    private Brand brand;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
-    public ModelDto() {
-    }
+    protected ModelDto() {}
 
-    public ModelDto(Long id, String name, Category category, String imageUrl, int startYear, int endYear, Date created, Date modified, Brand brand) {
+    public ModelDto(Long id, BrandDto brand, String name, CategoryType categoryType, String imageURL, int startYear,
+                    int endYear, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
+        this.brand = brand;
         this.name = name;
-        this.category = category;
-        this.imageUrl = imageUrl;
+        this.categoryType = categoryType;
+        this.imageURL = imageURL;
         this.startYear = startYear;
         this.endYear = endYear;
         this.created = created;
         this.modified = modified;
-        this.brand = brand;
     }
 
     public Long getId() {
@@ -39,6 +38,14 @@ public class ModelDto {
         this.id = id;
     }
 
+    public BrandDto getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandDto brand) {
+        this.brand = brand;
+    }
+
     public String getName() {
         return name;
     }
@@ -47,20 +54,20 @@ public class ModelDto {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public CategoryType getCategoryType() {
+        return categoryType;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public int getStartYear() {
@@ -79,43 +86,34 @@ public class ModelDto {
         this.endYear = endYear;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
     }
 
     @Override
     public String toString() {
         return "ModelDto{" +
                 "id=" + id +
+                ", brand=" + brand +
                 ", name='" + name + '\'' +
-                ", category=" + category +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", categoryEnum=" + categoryType +
+                ", imageURL='" + imageURL + '\'' +
                 ", startYear=" + startYear +
                 ", endYear=" + endYear +
                 ", created=" + created +
                 ", modified=" + modified +
-                ", brand=" + brand +
                 '}';
     }
 }
-

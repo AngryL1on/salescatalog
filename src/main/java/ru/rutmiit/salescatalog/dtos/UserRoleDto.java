@@ -1,15 +1,16 @@
 package ru.rutmiit.salescatalog.dtos;
 
+import ru.rutmiit.salescatalog.entity.enumeration.RoleType;
+
 public class UserRoleDto{
     private Long id;
-    private String role;
+    private RoleType roleType;
 
-    public UserRoleDto() {
-    }
+    protected UserRoleDto() {};
 
-    public UserRoleDto(Long id, String role) {
+    public UserRoleDto(Long id, RoleType roleType) {
         this.id = id;
-        this.role = role;
+        this.roleType = roleType;
     }
 
     public Long getId() {
@@ -20,19 +21,19 @@ public class UserRoleDto{
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public RoleType getRoles() {
+        return roleType;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(RoleType roleType) {
+        this.roleType = roleType;
     }
 
     @Override
     public String toString() {
-        return "UserRoleDto{" +
+        return "RoleDto{" +
                 "id=" + id +
-                ", role='" + role + '\'' +
+                ", roles=" + roleType +
                 '}';
     }
 }
