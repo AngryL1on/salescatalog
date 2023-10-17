@@ -22,16 +22,22 @@ public class Model extends Base {
 
     @Column(name="name", length = 255, nullable = false)
     private String name;
+
     @Column(name="category", length = 11, nullable = false)
     private CategoryType categoryType;
+
     @Column(name="imageURL", length = 255, nullable = false)
     private String imageUrl;
+
     @Column(name="startYear", length = 11, nullable = false)
     private int startYear;
+
     @Column(name="endYear", length = 11, nullable = false)
     private int endYear;
+
     @Column(name="created", length = 6, nullable = false)
     private Timestamp created;
+
     @Column(name="modified", length = 6, nullable = false)
     private Timestamp modified;
 

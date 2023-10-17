@@ -6,12 +6,12 @@ public class UserRoleDto{
     private Long id;
     private RoleType roleType;
 
-    protected UserRoleDto() {};
-
     public UserRoleDto(Long id, RoleType roleType) {
         this.id = id;
         this.roleType = roleType;
     }
+
+    protected UserRoleDto() {};
 
     public Long getId() {
         return id;
@@ -31,9 +31,9 @@ public class UserRoleDto{
 
     @Override
     public String toString() {
-        return "RoleDto{" +
-                "id=" + id +
-                ", roleType=" + roleType +
+        return "RoleDto {" +
+                "id = " + id +
+                ", roleType = " + roleType +
                 '}';
     }
 }

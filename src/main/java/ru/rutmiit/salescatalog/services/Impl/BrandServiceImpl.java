@@ -16,15 +16,16 @@ import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl implements BrandService{
-
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private BrandRepository brandRepository;
 
     public BrandServiceImpl(BrandRepository brandRepository) {
         this.brandRepository = brandRepository;
     }
+
     @Override
     public BrandDto register(BrandDto brand) {
         Brand b = modelMapper.map(brand, Brand.class);

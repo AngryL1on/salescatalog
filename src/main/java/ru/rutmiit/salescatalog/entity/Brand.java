@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Entity
 public class Brand extends Base{
-
     @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
     private List<Model> models;
 

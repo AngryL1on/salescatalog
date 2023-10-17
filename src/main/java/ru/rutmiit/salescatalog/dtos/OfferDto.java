@@ -20,11 +20,9 @@ public class OfferDto {
     private Timestamp created;
     private Timestamp modified;
 
-    protected OfferDto() {};
-
     public OfferDto(Long id, ModelDto model, UserDto users, String description, EngineType engineType, String imageURL,
-                    int mileage, BigDecimal price, TransmissionType transmissionType, int year, Timestamp created,
-                    Timestamp modified) {
+    int mileage, BigDecimal price, TransmissionType transmissionType, int year, Timestamp created,
+    Timestamp modified) {
         this.id = id;
         this.model = model;
         this.users = users;
@@ -38,6 +36,8 @@ public class OfferDto {
         this.created = created;
         this.modified = modified;
     }
+
+    protected OfferDto() {};
 
     public Long getId() {
         return id;
@@ -137,19 +137,19 @@ public class OfferDto {
 
     @Override
     public String toString() {
-        return "OfferDto{" +
-                "id=" + id +
-                ", model=" + model +
-                ", user=" + users +
-                ", description='" + description + '\'' +
-                ", engineType=" + engineType +
-                ", imageURL='" + imageURL + '\'' +
-                ", mileage=" + mileage +
-                ", price=" + price +
-                ", transmissionType=" + transmissionType +
-                ", year=" + year +
-                ", created=" + created +
-                ", modified=" + modified +
+        return "OfferDto {" +
+                "id = " + id +
+                ", model = " + model +
+                ", user = " + users +
+                ", description = '" + description + '\'' +
+                ", engineType = " + engineType +
+                ", imageURL = '" + imageURL + '\'' +
+                ", mileage = " + mileage +
+                ", price = " + price +
+                ", transmissionType = " + transmissionType +
+                ", year = " + year +
+                ", created = " + created +
+                ", modified = " + modified +
                 '}';
     }
 }

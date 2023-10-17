@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class OfferServiceImpl implements OfferService {
-
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private OfferRepository offerRepository;
 

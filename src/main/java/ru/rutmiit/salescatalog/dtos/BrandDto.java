@@ -51,11 +51,11 @@ public class BrandDto {
 
     @Override
     public String toString() {
-        return "BrandDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", created=" + created +
-                ", modified=" + modified +
+        return "BrandDto {" +
+                "id = " + id +
+                ", name = '" + name + '\'' +
+                ", created = " + created +
+                ", modified = " + modified +
                 '}';
     }
 }

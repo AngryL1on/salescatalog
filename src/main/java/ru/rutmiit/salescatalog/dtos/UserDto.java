@@ -16,10 +16,8 @@ public class UserDto{
     private Timestamp created;
     private Timestamp modified;
 
-    protected UserDto() {};
-
     public UserDto(Long id, UserRoleDto userRole, String userName, String password, String firstName, String lastName,
-                    boolean isActive, String imageURL, Timestamp created, Timestamp modified) {
+    boolean isActive, String imageURL, Timestamp created, Timestamp modified) {
         this.id = id;
         this.userRole = userRole;
         this.userName = userName;
@@ -31,6 +29,8 @@ public class UserDto{
         this.created = created;
         this.modified = modified;
     }
+
+    protected UserDto() {};
 
     public Long getId() {
         return id;
@@ -115,16 +115,16 @@ public class UserDto{
     @Override
     public String toString() {
         return "UsersDto{" +
-                "id=" + id +
-                ", role=" + userRole +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", isActive=" + isActive +
-                ", imageURL='" + imageURL + '\'' +
-                ", created=" + created +
-                ", modified=" + modified +
+                "id = " + id +
+                ", role = " + userRole +
+                ", userName = '" + userName + '\'' +
+                ", password = '" + password + '\'' +
+                ", firstName = '" + firstName + '\'' +
+                ", lastName = '" + lastName + '\'' +
+                ", isActive = " + isActive +
+                ", imageURL = '" + imageURL + '\'' +
+                ", created = " + created +
+                ", modified = " + modified +
                 '}';
     }
 }

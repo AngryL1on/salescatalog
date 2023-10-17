@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class ModelServiceImpl implements ModelService{
-
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private ModelRepository modelRepository;
 

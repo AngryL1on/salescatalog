@@ -18,19 +18,27 @@ public class Users extends Base {
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.REMOVE)
     private List<Offer> offers;
+
     @Column(name="userName", length = 255, nullable = false)
     private String userName;
+
     @Column(name="password", length = 255, nullable = false)
     private String password;
+
     @Column(name="firstName", length = 255, nullable = false)
     private String firstName;
+
     @Column(name="lastName", length = 255, nullable = false)
     private String lastName;
+
     private boolean isActive;
+
     @Column(name="imageURL", length = 255, nullable = false)
     private String imageURL;
+
     @Column(name="created", length = 6, nullable = false)
     private Timestamp created;
+
     @Column(name="modified", length = 6, nullable = false)
     private Timestamp modified;
 

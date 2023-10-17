@@ -15,8 +15,6 @@ public class ModelDto {
     private Timestamp created;
     private Timestamp modified;
 
-    protected ModelDto() {}
-
     public ModelDto(Long id, BrandDto brand, String name, CategoryType categoryType, String imageURL, int startYear,
                     int endYear, Timestamp created, Timestamp modified) {
         this.id = id;
@@ -29,6 +27,8 @@ public class ModelDto {
         this.created = created;
         this.modified = modified;
     }
+
+    protected ModelDto() {}
 
     public Long getId() {
         return id;
@@ -104,16 +104,16 @@ public class ModelDto {
 
     @Override
     public String toString() {
-        return "ModelDto{" +
-                "id=" + id +
-                ", brand=" + brand +
-                ", name='" + name + '\'' +
-                ", categoryEnum=" + categoryType +
-                ", imageURL='" + imageURL + '\'' +
-                ", startYear=" + startYear +
-                ", endYear=" + endYear +
-                ", created=" + created +
-                ", modified=" + modified +
+        return "ModelDto {" +
+                "id = " + id +
+                ", brand = " + brand +
+                ", name = '" + name + '\'' +
+                ", categoryType =" + categoryType +
+                ", imageURL = '" + imageURL + '\'' +
+                ", startYear = " + startYear +
+                ", endYear = " + endYear +
+                ", created = " + created +
+                ", modified = " + modified +
                 '}';
     }
 }

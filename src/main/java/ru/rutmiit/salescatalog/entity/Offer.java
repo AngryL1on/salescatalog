@@ -24,20 +24,28 @@ public class Offer extends Base {
 
     @Column(name="description", length = 500, nullable = false)
     private String description;
+
     @Column(name="engine", length = 11, nullable = false)
     private EngineType engineType;
+
     @Column(name="imageURL", length = 255, nullable = false)
     private String imageUrl;
+
     @Column(name="mileage", length = 11, nullable = false)
     private int mileage;
+
     @Column(name="price", length = 20, nullable = false)
     private BigDecimal price;
+
     @Column(name="transmission", length = 11, nullable = false)
     private TransmissionType transmissionType;
+
     @Column(name="year", length = 11, nullable = false)
     private int year;
+
     @Column(name="created", length = 6, nullable = false)
     private Timestamp created;
+
     @Column(name="modified", length = 6, nullable = false)
     private Timestamp modified;
 

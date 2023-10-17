@@ -7,9 +7,9 @@ import java.util.List;
 
 @Entity
 public class UserRole extends Base {
-
     @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
     private List<Users> users;
+
     @Column(name="name", length = 11, nullable = false)
     private RoleType roleType;
 
