@@ -18,10 +18,11 @@ import java.util.stream.Collectors;
 public class UserRoleServiceImpl implements UserRoleService {
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private UserRoleRepository userRoleRepository;
 
-    public UserRoleServiceImpl(UserRoleRepository roleRepository) {
+    public UserRoleServiceImpl(UserRoleRepository userRoleRepository) {
         this.userRoleRepository = userRoleRepository;
     }
 
