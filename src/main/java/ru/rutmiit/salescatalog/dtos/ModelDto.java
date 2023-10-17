@@ -2,7 +2,7 @@ package ru.rutmiit.salescatalog.dtos;
 
 import ru.rutmiit.salescatalog.entity.enumeration.CategoryType;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class ModelDto {
     private Long id;
@@ -12,13 +12,13 @@ public class ModelDto {
     private String imageURL;
     private int startYear;
     private int endYear;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Timestamp created;
+    private Timestamp modified;
 
     protected ModelDto() {}
 
     public ModelDto(Long id, BrandDto brand, String name, CategoryType categoryType, String imageURL, int startYear,
-                    int endYear, LocalDateTime created, LocalDateTime modified) {
+                    int endYear, Timestamp created, Timestamp modified) {
         this.id = id;
         this.brand = brand;
         this.name = name;
@@ -86,19 +86,19 @@ public class ModelDto {
         this.endYear = endYear;
     }
 
-    public LocalDateTime getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Timestamp getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Timestamp modified) {
         this.modified = modified;
     }
 

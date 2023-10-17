@@ -2,8 +2,7 @@ package ru.rutmiit.salescatalog.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -12,7 +11,7 @@ import java.util.List;
  * active status, role, image URL, creation and modification timestamps.
  */
 @Entity
-public class User extends Base {
+public class Users extends Base {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private UserRole role;
@@ -31,11 +30,11 @@ public class User extends Base {
     @Column(name="imageURL", length = 255, nullable = false)
     private String imageURL;
     @Column(name="created", length = 6, nullable = false)
-    private LocalDateTime created;
+    private Timestamp created;
     @Column(name="modified", length = 6, nullable = false)
-    private LocalDateTime modified;
+    private Timestamp modified;
 
-    protected User() {};
+    protected Users() {};
 
     public UserRole getRole() {
         return role;
@@ -101,19 +100,19 @@ public class User extends Base {
         this.imageURL = imageURL;
     }
 
-    public LocalDateTime getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Timestamp getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Timestamp modified) {
         this.modified = modified;
     }
 }

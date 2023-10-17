@@ -3,7 +3,7 @@ package ru.rutmiit.salescatalog.entity;
 import jakarta.persistence.*;
 import ru.rutmiit.salescatalog.entity.enumeration.CategoryType;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public class Model extends Base {
     @Column(name="name", length = 255, nullable = false)
     private String name;
     @Column(name="category", length = 11, nullable = false)
-    private CategoryType categoryTypeEnum;
+    private CategoryType categoryType;
     @Column(name="imageURL", length = 255, nullable = false)
     private String imageUrl;
     @Column(name="startYear", length = 11, nullable = false)
@@ -31,9 +31,9 @@ public class Model extends Base {
     @Column(name="endYear", length = 11, nullable = false)
     private int endYear;
     @Column(name="created", length = 6, nullable = false)
-    private LocalDateTime created;
+    private Timestamp created;
     @Column(name="modified", length = 6, nullable = false)
-    private LocalDateTime modified;
+    private Timestamp modified;
 
     protected Model() {};
 
@@ -61,12 +61,12 @@ public class Model extends Base {
         this.name = name;
     }
 
-    public CategoryType getCategoryEnum() {
-        return categoryTypeEnum;
+    public CategoryType getCategoryType() {
+        return categoryType;
     }
 
-    public void setCategoryEnum(CategoryType categoryTypeEnum) {
-        this.categoryTypeEnum = categoryTypeEnum;
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
     }
 
     public String getImageUrl() {
@@ -93,19 +93,19 @@ public class Model extends Base {
         this.endYear = endYear;
     }
 
-    public LocalDateTime getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Timestamp getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Timestamp modified) {
         this.modified = modified;
     }
 }

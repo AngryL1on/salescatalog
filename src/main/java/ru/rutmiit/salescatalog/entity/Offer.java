@@ -5,8 +5,7 @@ import ru.rutmiit.salescatalog.entity.enumeration.EngineType;
 import ru.rutmiit.salescatalog.entity.enumeration.TransmissionType;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Represents an offer entity.
@@ -21,7 +20,7 @@ public class Offer extends Base {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User users;
+    private Users users;
 
     @Column(name="description", length = 500, nullable = false)
     private String description;
@@ -38,9 +37,9 @@ public class Offer extends Base {
     @Column(name="year", length = 11, nullable = false)
     private int year;
     @Column(name="created", length = 6, nullable = false)
-    private LocalDateTime created;
+    private Timestamp created;
     @Column(name="modified", length = 6, nullable = false)
-    private LocalDateTime modified;
+    private Timestamp modified;
 
     protected Offer() {};
 
@@ -52,11 +51,11 @@ public class Offer extends Base {
         this.model = model;
     }
 
-    public User getUsers() {
+    public Users getUsers() {
         return users;
     }
 
-    public void setUsers(User users) {
+    public void setUsers(Users users) {
         this.users = users;
     }
 
@@ -116,19 +115,19 @@ public class Offer extends Base {
         this.year = year;
     }
 
-    public LocalDateTime getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Timestamp getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Timestamp modified) {
         this.modified = modified;
     }
 }

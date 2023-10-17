@@ -9,25 +9,25 @@ import java.util.List;
 public class UserRole extends Base {
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
-    private List<User> users;
+    private List<Users> users;
     @Column(name="name", length = 11, nullable = false)
-    private RoleType roleEnum;
+    private RoleType roleType;
 
     protected UserRole() {};
 
-    public List<User> getUsers() {
+    public List<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<Users> users) {
         this.users = users;
     }
 
-    public RoleType getRoleEnum() {
-        return roleEnum;
+    public RoleType getRoleType() {
+        return roleType;
     }
 
-    public void setRoleEnum(RoleType roleEnum) {
-        this.roleEnum = roleEnum;
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
     }
 }

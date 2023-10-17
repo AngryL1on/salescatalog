@@ -2,7 +2,7 @@ package ru.rutmiit.salescatalog.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -18,9 +18,9 @@ public class Brand extends Base{
     @Column(name="name", length = 255, nullable = false)
     private String name;
     @Column(name="created", length = 6, nullable = false)
-    private LocalDateTime created;
+    private Timestamp created;
     @Column(name="modified", length = 6, nullable = false)
-    private LocalDateTime modified;
+    private Timestamp modified;
 
     protected Brand() {};
 
@@ -40,19 +40,19 @@ public class Brand extends Base{
         this.name = name;
     }
 
-    public LocalDateTime getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Timestamp getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Timestamp modified) {
         this.modified = modified;
     }
 }

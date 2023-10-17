@@ -2,27 +2,26 @@ package ru.rutmiit.salescatalog.dtos;
 
 import ru.rutmiit.salescatalog.entity.UserRole;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class UserDto{
     private Long id;
-    private UserRoleDto role;
+    private UserRoleDto userRole;
     private String userName;
     private String password;
     private String firstName;
     private String lastName;
     private boolean isActive;
     private String imageURL;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Timestamp created;
+    private Timestamp modified;
 
     protected UserDto() {};
 
-    public UserDto(Long id, UserRoleDto role, String userName, String password, String firstName, String lastName,
-                    boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
+    public UserDto(Long id, UserRoleDto userRole, String userName, String password, String firstName, String lastName,
+                    boolean isActive, String imageURL, Timestamp created, Timestamp modified) {
         this.id = id;
-        this.role = role;
+        this.userRole = userRole;
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -42,11 +41,11 @@ public class UserDto{
     }
 
     public UserRoleDto getRole() {
-        return role;
+        return userRole;
     }
 
     public void setRole(UserRoleDto role) {
-        this.role = role;
+        this.userRole = role;
     }
 
     public String getUserName() {
@@ -97,19 +96,19 @@ public class UserDto{
         this.imageURL = imageURL;
     }
 
-    public LocalDateTime getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Timestamp getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Timestamp modified) {
         this.modified = modified;
     }
 
@@ -117,7 +116,7 @@ public class UserDto{
     public String toString() {
         return "UsersDto{" +
                 "id=" + id +
-                ", role=" + role +
+                ", role=" + userRole +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +

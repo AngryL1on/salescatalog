@@ -21,11 +21,11 @@ public class UserRoleDto{
         this.id = id;
     }
 
-    public RoleType getRoles() {
+    public RoleType getRoleType() {
         return roleType;
     }
 
-    public void setRoles(RoleType roleType) {
+    public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
     }
 
@@ -33,7 +33,7 @@ public class UserRoleDto{
     public String toString() {
         return "RoleDto{" +
                 "id=" + id +
-                ", roles=" + roleType +
+                ", roleType=" + roleType +
                 '}';
     }
 }
