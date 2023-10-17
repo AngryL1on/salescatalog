@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class SalescatalogApplication {
+public class SalesCatalogApplication{
 	@Bean
 	public ModelMapper modelMapper() {
 		ModelMapper modelMapper = new ModelMapper();
@@ -20,7 +20,6 @@ public class SalescatalogApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SalescatalogApplication.class, args);
+		SpringApplication.run(SalesCatalogApplication.class, args);
 	}
-
 }
