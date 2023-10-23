@@ -2,18 +2,20 @@ package ru.rutmiit.salescatalog.entity;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @MappedSuperclass
 public abstract class Base {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "uuid2")
     @Column(name = "id")
-    protected Long id;
+    protected UUID id;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

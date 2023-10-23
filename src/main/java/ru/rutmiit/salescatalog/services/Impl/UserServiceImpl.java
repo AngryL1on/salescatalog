@@ -12,6 +12,7 @@ import ru.rutmiit.salescatalog.entity.Users;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,9 +29,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto register(UserDto users) {
-        Users b = modelMapper.map(users, Users.class);
-        if (b.getId() == null || b.getId() == 0 || get(b.getId()).isEmpty()) {
-            return modelMapper.map(userRepository.save(b), UserDto.class);
+        Users u = modelMapper.map(users, Users.class);
+        UUID userId = u.getId();
+        if (u.getId() == null || userRepository.findById(userId).isEmpty()) {
+            return modelMapper.map(userRepository.save(u), UserDto.class);
         } else {
             throw new UserConflictException("A user with this id already exists");
         }
@@ -42,12 +44,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<UserDto> get(Long id) {
+    public Optional<UserDto> get(UUID id) {
         return Optional.ofNullable(modelMapper.map(userRepository.findById(id), UserDto.class));
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         if (userRepository.findById(id).isPresent()) {
             userRepository.deleteById(id);
         } else {

@@ -3,9 +3,10 @@ package ru.rutmiit.salescatalog.dtos;
 import ru.rutmiit.salescatalog.entity.UserRole;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 public class UserDto{
-    private Long id;
+    private UUID id;
     private UserRoleDto userRole;
     private String userName;
     private String password;
@@ -16,7 +17,7 @@ public class UserDto{
     private Timestamp created;
     private Timestamp modified;
 
-    public UserDto(Long id, UserRoleDto userRole, String userName, String password, String firstName, String lastName,
+    public UserDto(UUID id, UserRoleDto userRole, String userName, String password, String firstName, String lastName,
     boolean isActive, String imageURL, Timestamp created, Timestamp modified) {
         this.id = id;
         this.userRole = userRole;
@@ -32,11 +33,11 @@ public class UserDto{
 
     protected UserDto() {};
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

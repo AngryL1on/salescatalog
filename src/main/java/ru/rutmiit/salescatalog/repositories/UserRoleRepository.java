@@ -3,5 +3,7 @@ package ru.rutmiit.salescatalog.repositories;
 import ru.rutmiit.salescatalog.entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
+import java.util.UUID;
+
+public interface UserRoleRepository extends JpaRepository<UserRole, UUID> {
 }

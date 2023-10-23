@@ -2,22 +2,24 @@ package ru.rutmiit.salescatalog.dtos;
 
 import ru.rutmiit.salescatalog.entity.enumeration.RoleType;
 
+import java.util.UUID;
+
 public class UserRoleDto{
-    private Long id;
+    private UUID id;
     private RoleType roleType;
 
-    public UserRoleDto(Long id, RoleType roleType) {
+    public UserRoleDto(UUID id, RoleType roleType) {
         this.id = id;
         this.roleType = roleType;
     }
 
     protected UserRoleDto() {};
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

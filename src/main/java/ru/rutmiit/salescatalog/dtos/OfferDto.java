@@ -5,9 +5,10 @@ import ru.rutmiit.salescatalog.entity.enumeration.TransmissionType;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 public class OfferDto {
-    private Long id;
+    private UUID id;
     private ModelDto model;
     private UserDto users;
     private String description;
@@ -20,7 +21,7 @@ public class OfferDto {
     private Timestamp created;
     private Timestamp modified;
 
-    public OfferDto(Long id, ModelDto model, UserDto users, String description, EngineType engineType, String imageURL,
+    public OfferDto(UUID id, ModelDto model, UserDto users, String description, EngineType engineType, String imageURL,
     int mileage, BigDecimal price, TransmissionType transmissionType, int year, Timestamp created,
     Timestamp modified) {
         this.id = id;
@@ -39,11 +40,11 @@ public class OfferDto {
 
     protected OfferDto() {};
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

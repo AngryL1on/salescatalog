@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 public class Brand extends Base{
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "brand",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Model> models;
 
     @Column(name="name", length = 255, nullable = false)

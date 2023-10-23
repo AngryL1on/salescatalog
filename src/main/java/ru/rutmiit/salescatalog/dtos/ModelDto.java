@@ -3,9 +3,10 @@ package ru.rutmiit.salescatalog.dtos;
 import ru.rutmiit.salescatalog.entity.enumeration.CategoryType;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 public class ModelDto {
-    private Long id;
+    private UUID id;
     private BrandDto brand;
     private String name;
     private CategoryType categoryType;
@@ -15,7 +16,7 @@ public class ModelDto {
     private Timestamp created;
     private Timestamp modified;
 
-    public ModelDto(Long id, BrandDto brand, String name, CategoryType categoryType, String imageURL, int startYear,
+    public ModelDto(UUID id, BrandDto brand, String name, CategoryType categoryType, String imageURL, int startYear,
                     int endYear, Timestamp created, Timestamp modified) {
         this.id = id;
         this.brand = brand;
@@ -30,11 +31,11 @@ public class ModelDto {
 
     protected ModelDto() {}
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

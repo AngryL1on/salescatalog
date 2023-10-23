@@ -17,7 +17,7 @@ public class Model extends Base {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "model",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Offer> offers;
 
     @Column(name="name", length = 255, nullable = false)

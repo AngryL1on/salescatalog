@@ -1,14 +1,15 @@
 package ru.rutmiit.salescatalog.dtos;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 public class BrandDto {
-    private Long id;
+    private UUID id;
     private String name;
     private Timestamp created;
     private Timestamp modified;
 
-    public BrandDto(Long id, String name, Timestamp created, Timestamp modified) {
+    public BrandDto(UUID id, String name, Timestamp created, Timestamp modified) {
         this.id = id;
         this.name = name;
         this.created = created;
@@ -17,11 +18,11 @@ public class BrandDto {
 
     protected BrandDto() {};
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

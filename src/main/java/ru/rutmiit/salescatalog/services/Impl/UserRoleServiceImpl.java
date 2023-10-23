@@ -12,6 +12,7 @@ import ru.rutmiit.salescatalog.services.UserRoleService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,9 +29,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public UserRoleDto register(UserRoleDto role) {
-        UserRole b = modelMapper.map(role, UserRole.class);
-        if (b.getId() == null || b.getId() == 0 || get(b.getId()).isEmpty()) {
-            return modelMapper.map(userRoleRepository.save(b), UserRoleDto.class);
+        UserRole r = modelMapper.map(role, UserRole.class);
+        UUID userRoleId = role.getId();
+
+        if (userRoleId == null || userRoleRepository.findById(userRoleId).isEmpty()) {
+            return modelMapper.map(userRoleRepository.save(r), UserRoleDto.class);
         } else {
             throw new UserRoleConflictException("A role with this id already exists");
         }
@@ -42,12 +45,12 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public Optional<UserRoleDto> get(Long id) {
+    public Optional<UserRoleDto> get(UUID id) {
         return Optional.ofNullable(modelMapper.map(userRoleRepository.findById(id), UserRoleDto.class));
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         if (userRoleRepository.findById(id).isPresent()) {
             userRoleRepository.deleteById(id);
         } else {
