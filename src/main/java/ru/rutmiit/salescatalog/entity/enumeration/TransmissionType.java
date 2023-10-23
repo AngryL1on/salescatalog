@@ -1,6 +1,12 @@
 package ru.rutmiit.salescatalog.entity.enumeration;
 
 public enum TransmissionType{
-    MANUAL,
-    AUTOMATIC
+    MANUAL (0),
+    AUTOMATIC (1);
+
+    private int number;
+
+    TransmissionType(int number) {
+        this.number = number;
+    }
 }

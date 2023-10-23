@@ -1,8 +1,14 @@
 package ru.rutmiit.salescatalog.entity.enumeration;
 
 public enum CategoryType{
-    Car,
-    Buss,
-    Truck,
-    Motorcycle
+    CAR(0),
+    BUS(1),
+    TRUCK(2),
+    MOTORCYCLE(3);
+
+    private int number;
+
+    CategoryType(int number) {
+        this.number = number;
+    }
 }

@@ -55,11 +55,11 @@ public class DataInitializer implements CommandLineRunner {
         brand2 = brandService.register(brand2);
         brand3 = brandService.register(brand3);
 
-        ModelDto model1 = new ModelDto(null, brand1, "Lanser X", CategoryType.Car, "http://fawjjekjaw",
+        ModelDto model1 = new ModelDto(null, brand1, "Lanser X", CategoryType.CAR, "http://fawjjekjaw",
                 2018, 2023, created1, modified2);
-        ModelDto model2 = new ModelDto(null, brand2, "MARK II", CategoryType.Motorcycle, "http://djakwj",
+        ModelDto model2 = new ModelDto(null, brand2, "MARK II", CategoryType.MOTORCYCLE, "http://djakwj",
                 2008, 2014, created2, modified2);
-        ModelDto model3 = new ModelDto(null, brand3, "Skyline R34", CategoryType.Motorcycle, "http://fdsjbfjksd",
+        ModelDto model3 = new ModelDto(null, brand3, "Skyline R34", CategoryType.MOTORCYCLE, "http://fdsjbfjksd",
                 2008, 2014, created2, modified2);
         model1 = modelService.register(model1);
         model2 = modelService.register(model2);
