@@ -1,8 +1,6 @@
-package ru.rutmiit.salescatalog.dtos;
+package ru.rutmiit.salescatalog.services.dtos;
 
-import ru.rutmiit.salescatalog.entity.UserRole;
-
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class UserDto{
@@ -14,11 +12,11 @@ public class UserDto{
     private String lastName;
     private boolean isActive;
     private String imageURL;
-    private Timestamp created;
-    private Timestamp modified;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
     public UserDto(UUID id, UserRoleDto userRole, String userName, String password, String firstName, String lastName,
-    boolean isActive, String imageURL, Timestamp created, Timestamp modified) {
+    boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.userRole = userRole;
         this.userName = userName;
@@ -97,19 +95,19 @@ public class UserDto{
         this.imageURL = imageURL;
     }
 
-    public Timestamp getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Timestamp getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Timestamp modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 

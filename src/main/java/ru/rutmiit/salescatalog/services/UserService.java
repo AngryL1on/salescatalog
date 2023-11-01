@@ -1,19 +1,24 @@
 package ru.rutmiit.salescatalog.services;
 
-import ru.rutmiit.salescatalog.dtos.UserDto;
+import org.springframework.stereotype.Service;
+import ru.rutmiit.salescatalog.services.dtos.UserDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public interface UserService{
-    UserDto register(UserDto users);
+    UserDto addUser(UserDto users);
 
-    List<UserDto> getAll();
+    Optional<UserDto> getUser(UUID id);
 
-    Optional<UserDto> get(UUID id);
+    List<UserDto> getAllUsers();
 
-    void delete(UUID id);
+    List<UserDto> findUserByFirstName(String firstName);
+    List<UserDto> findUserByLastName(String lastName);
 
-    UserDto update(UserDto users);
+    UserDto updateUser(UserDto users);
+
+    void deleteUser(UUID id);
 }

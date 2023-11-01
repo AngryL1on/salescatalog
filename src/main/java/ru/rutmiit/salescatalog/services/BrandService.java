@@ -1,19 +1,23 @@
 package ru.rutmiit.salescatalog.services;
 
-import ru.rutmiit.salescatalog.dtos.BrandDto;
+import org.springframework.stereotype.Service;
+import ru.rutmiit.salescatalog.services.dtos.BrandDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public interface BrandService {
-    BrandDto register(BrandDto brand);
+    BrandDto addBrand(BrandDto brand);
 
-    List<BrandDto> getAll();
+    Optional<BrandDto> getBrand(UUID id);
 
-    Optional<BrandDto> get(UUID id);
+    List<BrandDto> getAllBrands();
 
-    void delete(UUID id);
+    List<BrandDto> findBrandByName(String name);
 
-    BrandDto update(BrandDto brand);
+    BrandDto updateBrand(BrandDto brand);
+
+    void deleteBrand(UUID id);
 }

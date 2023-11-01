@@ -1,59 +1,56 @@
 package ru.rutmiit.salescatalog.init;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import ru.rutmiit.salescatalog.dtos.*;
 import ru.rutmiit.salescatalog.entity.enumeration.CategoryType;
 import ru.rutmiit.salescatalog.entity.enumeration.EngineType;
 import ru.rutmiit.salescatalog.entity.enumeration.RoleType;
 import ru.rutmiit.salescatalog.entity.enumeration.TransmissionType;
 import ru.rutmiit.salescatalog.services.*;
+import ru.rutmiit.salescatalog.services.dtos.*;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
+    private final BrandService brandService;
+    private final ModelService modelService;
+    private final OfferService offerService;
+    private final UserService userService;
+    private final UserRoleService userRoleService;
+
+    public DataInitializer(BrandService brandService, ModelService modelService, OfferService offerService, UserService userService, UserRoleService userRoleService) {
+        this.brandService = brandService;
+        this.modelService = modelService;
+        this.offerService = offerService;
+        this.userService = userService;
+        this.userRoleService = userRoleService;
+    }
+
     @Override
     public void run(String... args){
         seedData();
     }
 
-    @Autowired
-    private UserRoleService roleService;
-
-    @Autowired
-    private BrandService brandService;
-
-    @Autowired
-    private ModelService modelService;
-
-    @Autowired
-    private UserService usersService;
-
-    @Autowired
-    private OfferService offerService;
-
     private void seedData() {
         UserRoleDto role1 = new UserRoleDto(null, RoleType.ADMIN);
         UserRoleDto role2 = new UserRoleDto(null, RoleType.USER);
-        role1 = roleService.register(role1);
-        role2 = roleService.register(role2);
+        role1 = userRoleService.addUserRole(role1);
+        role2 = userRoleService.addUserRole(role2);
 
-        Timestamp created1 = Timestamp.from(Instant.now());
-        Timestamp created2 = Timestamp.from(Instant.now());
-        Timestamp created3 = Timestamp.from(Instant.now());
-        Timestamp modified1 = Timestamp.from(Instant.now());
-        Timestamp modified2 = Timestamp.from(Instant.now());
-        Timestamp modified3 = Timestamp.from(Instant.now());
+        LocalDateTime created1 = LocalDateTime.now();
+        LocalDateTime created2 = LocalDateTime.now();
+        LocalDateTime created3 = LocalDateTime.now();
+        LocalDateTime modified1 = LocalDateTime.now();
+        LocalDateTime modified2 = LocalDateTime.now();
+        LocalDateTime modified3 = LocalDateTime.now();
         BrandDto brand1 = new BrandDto(null, "Mitsubishi", created1, modified1);
         BrandDto brand2 = new BrandDto(null, "Toyota", created2, modified2);
         BrandDto brand3 = new BrandDto(null, "Nissan", created3, modified3);
-        brand1 = brandService.register(brand1);
-        brand2 = brandService.register(brand2);
-        brand3 = brandService.register(brand3);
+        brand1 = brandService.addBrand(brand1);
+        brand2 = brandService.addBrand(brand2);
+        brand3 = brandService.addBrand(brand3);
 
         ModelDto model1 = new ModelDto(null, brand1, "Lanser X", CategoryType.CAR, "http://fawjjekjaw",
                 2018, 2023, created1, modified2);
@@ -61,9 +58,9 @@ public class DataInitializer implements CommandLineRunner {
                 2008, 2014, created2, modified2);
         ModelDto model3 = new ModelDto(null, brand3, "Skyline R34", CategoryType.MOTORCYCLE, "http://fdsjbfjksd",
                 2008, 2014, created2, modified2);
-        model1 = modelService.register(model1);
-        model2 = modelService.register(model2);
-        model3 = modelService.register(model3);
+        model1 = modelService.addModel(model1);
+        model2 = modelService.addModel(model2);
+        model3 = modelService.addModel(model3);
 
         UserDto user1 = new UserDto(null, role1, "ReaperParadise", "123456789", "Egor",
                 "Linyaev", true, "http://fbsehjfbks", created1, modified1);
@@ -71,9 +68,9 @@ public class DataInitializer implements CommandLineRunner {
                 "Lushin", true, "http://fgjhwegfj", created2, modified2);
         UserDto user3 = new UserDto(null, role2, "Toksin or ToksGaz", "987656789", "Nikita",
                 "Lazarenko", true, "http://fhsehfkse", created3, modified3);
-        user1 = usersService.register(user1);
-        user2 = usersService.register(user2);
-        user3 = usersService.register(user3);
+        user1 = userService.addUser(user1);
+        user2 = userService.addUser(user2);
+        user3 = userService.addUser(user3);
 
         BigDecimal price1 = new BigDecimal(24000000);
         BigDecimal price2 = new BigDecimal(3150000);
@@ -85,8 +82,8 @@ public class DataInitializer implements CommandLineRunner {
                 "http://hewbfhbvehf", 2, price2, TransmissionType.AUTOMATIC, 2023, created2, modified2);
         OfferDto offer3 = new OfferDto(null, model3, user3, "Cool Motorcycle", EngineType.GASOLINE,
                 "http://hcsjzkhckjz", 2, price3, TransmissionType.AUTOMATIC, 2023, created2, modified3);
-        offerService.register(offer1);
-        offerService.register(offer2);
-        offerService.register(offer3);
+        offerService.addOffer(offer1);
+        offerService.addOffer(offer2);
+        offerService.addOffer(offer3);
     }
 }

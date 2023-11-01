@@ -6,27 +6,30 @@ import ru.rutmiit.salescatalog.entity.enumeration.RoleType;
 import java.util.List;
 
 @Entity
-public class UserRole extends Base {
-    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+@AttributeOverrides({
+        @AttributeOverride(name = "created", column = @Column(insertable = false, updatable = false)),
+        @AttributeOverride(name = "modified", column = @Column(insertable = false, updatable = false))
+})
+@Table(name = "user_roles")
+public class UserRole extends Base{
     private List<Users> users;
-
-    @Column(name="name", length = 11, nullable = false)
     private RoleType roleType;
 
     protected UserRole() {};
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
     public List<Users> getUsers() {
         return users;
     }
-
     public void setUsers(List<Users> users) {
         this.users = users;
     }
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name="name", length = 11, nullable = false)
     public RoleType getRoleType() {
         return roleType;
     }
-
     public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
     }

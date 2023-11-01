@@ -1,15 +1,15 @@
-package ru.rutmiit.salescatalog.dtos;
+package ru.rutmiit.salescatalog.services.dtos;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class BrandDto {
     private UUID id;
     private String name;
-    private Timestamp created;
-    private Timestamp modified;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
-    public BrandDto(UUID id, String name, Timestamp created, Timestamp modified) {
+    public BrandDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.created = created;
@@ -34,19 +34,19 @@ public class BrandDto {
         this.name = name;
     }
 
-    public Timestamp getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Timestamp getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Timestamp modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 

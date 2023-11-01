@@ -1,19 +1,23 @@
 package ru.rutmiit.salescatalog.services;
 
-import ru.rutmiit.salescatalog.dtos.OfferDto;
+import org.springframework.stereotype.Service;
+import ru.rutmiit.salescatalog.services.dtos.OfferDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public interface OfferService {
-    OfferDto register(OfferDto offer);
+    OfferDto addOffer(OfferDto offer);
 
-    List<OfferDto> getAll();
+    Optional<OfferDto> getOffer(UUID id);
 
-    Optional<OfferDto> get(UUID id);
+    List<OfferDto> getAllOffers();
 
-    void delete(UUID id);
+    List<OfferDto> findOfferByYear(int year);
 
-    OfferDto update(OfferDto offer);
+    OfferDto updateOffer(OfferDto offer);
+
+    void deleteOffer(UUID id);
 }

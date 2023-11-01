@@ -1,4 +1,4 @@
-package ru.rutmiit.salescatalog.dtos;
+package ru.rutmiit.salescatalog.services.dtos;
 
 import ru.rutmiit.salescatalog.entity.enumeration.RoleType;
 

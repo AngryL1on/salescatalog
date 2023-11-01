@@ -1,10 +1,10 @@
-package ru.rutmiit.salescatalog.dtos;
+package ru.rutmiit.salescatalog.services.dtos;
 
 import ru.rutmiit.salescatalog.entity.enumeration.EngineType;
 import ru.rutmiit.salescatalog.entity.enumeration.TransmissionType;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class OfferDto {
@@ -18,12 +18,12 @@ public class OfferDto {
     private BigDecimal price;
     private TransmissionType transmissionType;
     private int year;
-    private Timestamp created;
-    private Timestamp modified;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
     public OfferDto(UUID id, ModelDto model, UserDto users, String description, EngineType engineType, String imageURL,
-    int mileage, BigDecimal price, TransmissionType transmissionType, int year, Timestamp created,
-    Timestamp modified) {
+    int mileage, BigDecimal price, TransmissionType transmissionType, int year, LocalDateTime created,
+    LocalDateTime modified) {
         this.id = id;
         this.model = model;
         this.users = users;
@@ -120,19 +120,19 @@ public class OfferDto {
         this.year = year;
     }
 
-    public Timestamp getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Timestamp getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Timestamp modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 

@@ -1,14 +1,16 @@
 package ru.rutmiit.salescatalog.services.Impl;
 
+import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.rutmiit.salescatalog.dtos.UserRoleDto;
+import ru.rutmiit.salescatalog.services.dtos.UserRoleDto;
 import ru.rutmiit.salescatalog.entity.UserRole;
 import ru.rutmiit.salescatalog.exception.UserRoleConflictException;
 import ru.rutmiit.salescatalog.exception.UserRoleNotFoundException;
 import ru.rutmiit.salescatalog.repositories.UserRoleRepository;
 import ru.rutmiit.salescatalog.services.UserRoleService;
+import ru.rutmiit.salescatalog.util.ValidationUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,18 +19,32 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
-    @Autowired
+    private UserRoleRepository userRoleRepository;
     private ModelMapper modelMapper;
+    private ValidationUtil validationUtil;
 
     @Autowired
-    private UserRoleRepository userRoleRepository;
+    public UserRoleServiceImpl(UserRoleRepository userRoleRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
+        this.userRoleRepository = userRoleRepository;
+        this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
+    }
 
     public UserRoleServiceImpl(UserRoleRepository userRoleRepository) {
         this.userRoleRepository = userRoleRepository;
     }
 
     @Override
-    public UserRoleDto register(UserRoleDto role) {
+    public UserRoleDto addUserRole(UserRoleDto role) {
+        if(!this.validationUtil.isValid(role)) {
+            this.validationUtil
+                    .violations(role)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Role!");
+        }
+
         UserRole r = modelMapper.map(role, UserRole.class);
         UUID userRoleId = role.getId();
 
@@ -40,30 +56,39 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public List<UserRoleDto> getAll() {
-        return userRoleRepository.findAll().stream().map((s) -> modelMapper.map(s, UserRoleDto.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public Optional<UserRoleDto> get(UUID id) {
+    public Optional<UserRoleDto> getUserRole(UUID id) {
         return Optional.ofNullable(modelMapper.map(userRoleRepository.findById(id), UserRoleDto.class));
     }
 
     @Override
-    public void delete(UUID id) {
-        if (userRoleRepository.findById(id).isPresent()) {
-            userRoleRepository.deleteById(id);
-        } else {
-            throw new UserRoleNotFoundException(id);
-        }
+    public List<UserRoleDto> getAllUserRoles() {
+        return userRoleRepository.findAll().stream().map((s) -> modelMapper.map(s, UserRoleDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public UserRoleDto update(UserRoleDto role) {
+    public UserRoleDto updateUserRole(UserRoleDto role) {
+        if(!this.validationUtil.isValid(role)) {
+            this.validationUtil
+                    .violations(role)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Role!");
+        }
+
         if (userRoleRepository.findById(role.getId()).isPresent()) {
             return modelMapper.map(userRoleRepository.save(modelMapper.map(role, UserRole.class)), UserRoleDto.class);
         } else {
             throw new UserRoleNotFoundException(role.getId());
+        }
+    }
+
+    @Override
+    public void deleteUserRole(UUID id) {
+        if (userRoleRepository.findById(id).isPresent()) {
+            userRoleRepository.deleteById(id);
+        } else {
+            throw new UserRoleNotFoundException(id);
         }
     }
 }

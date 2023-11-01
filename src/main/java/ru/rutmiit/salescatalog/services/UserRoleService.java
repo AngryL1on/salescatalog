@@ -1,19 +1,21 @@
 package ru.rutmiit.salescatalog.services;
 
-import ru.rutmiit.salescatalog.dtos.UserRoleDto;
+import org.springframework.stereotype.Service;
+import ru.rutmiit.salescatalog.services.dtos.UserRoleDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public interface UserRoleService{
-    UserRoleDto register(UserRoleDto role);
+    UserRoleDto addUserRole(UserRoleDto role);
 
-    List<UserRoleDto> getAll();
+    Optional<UserRoleDto> getUserRole(UUID id);
 
-    Optional<UserRoleDto> get(UUID id);
+    List<UserRoleDto> getAllUserRoles();
 
-    void delete(UUID id);
+    UserRoleDto updateUserRole(UserRoleDto role);
 
-    UserRoleDto update(UserRoleDto role);
+    void deleteUserRole(UUID id);
 }

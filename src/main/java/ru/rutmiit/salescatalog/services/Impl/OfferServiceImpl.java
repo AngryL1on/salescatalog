@@ -1,6 +1,7 @@
 package ru.rutmiit.salescatalog.services.Impl;
 
-import ru.rutmiit.salescatalog.dtos.OfferDto;
+import jakarta.validation.ConstraintViolation;
+import ru.rutmiit.salescatalog.services.dtos.OfferDto;
 import ru.rutmiit.salescatalog.exception.OfferConflictException;
 import ru.rutmiit.salescatalog.exception.OfferNotFoundException;
 import ru.rutmiit.salescatalog.entity.Offer;
@@ -9,6 +10,7 @@ import ru.rutmiit.salescatalog.services.OfferService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.rutmiit.salescatalog.util.ValidationUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,20 +19,31 @@ import java.util.stream.Collectors;
 
 @Service
 public class OfferServiceImpl implements OfferService {
-    @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
     private OfferRepository offerRepository;
+    private final ModelMapper modelMapper;
+    private final ValidationUtil validationUtil;
 
-    public OfferServiceImpl(OfferRepository offerRepository) {
+    @Autowired
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.offerRepository = offerRepository;
+        this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
     }
 
     @Override
-    public OfferDto register(OfferDto offer) {
+    public OfferDto addOffer(OfferDto offer) {
+        if(!this.validationUtil.isValid(offer)) {
+            this.validationUtil
+                    .violations(offer)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Offer!");
+        }
+
         Offer o = modelMapper.map(offer, Offer.class);
         UUID offerId = o.getId();
+
         if (offerId == null || offerRepository.findById(offerId).isEmpty()) {
             return modelMapper.map(offerRepository.save(o), OfferDto.class);
         } else {
@@ -39,30 +52,44 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public List<OfferDto> getAll() {
-        return offerRepository.findAll().stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public Optional<OfferDto> get(UUID id) {
+    public Optional<OfferDto> getOffer(UUID id) {
         return Optional.ofNullable(modelMapper.map(offerRepository.findById(id), OfferDto.class));
     }
 
     @Override
-    public void delete(UUID id) {
-        if (offerRepository.findById(id).isPresent()) {
-            offerRepository.deleteById(id);
-        } else {
-            throw new OfferNotFoundException(id);
-        }
+    public List<OfferDto> getAllOffers() {
+        return offerRepository.findAll().stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public OfferDto update(OfferDto offer) {
+    public List<OfferDto> findOfferByYear(int year) {
+        return offerRepository.findAllByYear(year).stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public OfferDto updateOffer(OfferDto offer) {
+        if(!this.validationUtil.isValid(offer)) {
+            this.validationUtil
+                    .violations(offer)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Offer for update!");
+        }
+
         if (offerRepository.findById(offer.getId()).isPresent()) {
             return modelMapper.map(offerRepository.save(modelMapper.map(offer, Offer.class)), OfferDto.class);
         } else {
             throw new OfferNotFoundException(offer.getId());
+        }
+    }
+
+    @Override
+    public void deleteOffer(UUID id) {
+        if (offerRepository.findById(id).isPresent()) {
+            offerRepository.deleteById(id);
+        } else {
+            throw new OfferNotFoundException(id);
         }
     }
 }
